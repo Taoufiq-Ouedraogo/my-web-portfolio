@@ -9,41 +9,65 @@
 (function() {
   "use strict";
 
-  /**
-   * Header toggle
-   */
-  const headerToggleBtn = document.querySelector('.header-toggle');
+  console.log('main.js is running');
 
-  function headerToggle() {
-    document.querySelector('#header').classList.toggle('header-show');
-    headerToggleBtn.classList.toggle('bi-list');
-    headerToggleBtn.classList.toggle('bi-x');
+  /**
+   * Dynamically load HTML component into a container
+   * @param {string} url - Path to the HTML file
+   * @param {string} containerId - ID of the container element
+   */
+  function loadComponent(url, containerId, callback) {
+    fetch(url)
+      .then(response => response.text())
+      .then(html => {
+        const container = document.getElementById(containerId);
+        container.innerHTML = html;
+        if (typeof callback === "function") callback();
+        console.log('Component loaded from ${url} into ${containerId}');
+        console.log('Loaded HTML:', html);
+      });
   }
-  headerToggleBtn.addEventListener('click', headerToggle);
+
+  // Load sidebar and footer, then initialize sidebar toggle after sidebar is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    loadComponent('components/sidebar.html', 'sidebar-container', initSidebarToggle);
+    loadComponent('components/footer.html', 'footer-container');
+    loadComponent('components/about.html', 'about-container', initTyped);
+    loadComponent('components/experience.html', 'experience-container');
+    loadComponent('components/education.html', 'education-container');
+    loadComponent('components/research-projects.html', 'research-projects-container');
+  });
+
+  /**
+   * Header toggle (sidebar show/hide)
+   */
+  function initSidebarToggle() {
+    const headerToggleBtn = document.querySelector('.sidebar-toggle');
+    if (headerToggleBtn) {
+      headerToggleBtn.addEventListener('click', function() {
+        document.querySelector('#sidebar').classList.toggle('sidebar-show');
+        headerToggleBtn.classList.toggle('bi-list');
+        headerToggleBtn.classList.toggle('bi-x');
+      });
+    }
+  }
 
   /**
    * Hide mobile nav on same-page/hash links
    */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.header-show')) {
-        headerToggle();
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('#navmenu a')) {
+      if (document.querySelector('#sidebar.sidebar-show')) {
+        const headerToggleBtn = document.querySelector('.sidebar-toggle');
+        if (headerToggleBtn) {
+          document.querySelector('#sidebar').classList.remove('sidebar-show');
+          headerToggleBtn.classList.add('bi-list');
+          headerToggleBtn.classList.remove('bi-x');
+        }
       }
-    });
-
+    }
   });
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
 
   /**
    * Preloader
@@ -92,17 +116,20 @@
   /**
    * Init typed.js
    */
-  const selectTyped = document.querySelector('.typed');
-  if (selectTyped) {
-    let typed_strings = selectTyped.getAttribute('data-typed-items');
-    typed_strings = typed_strings.split(',');
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    });
+  function initTyped() {
+    const typedSpan = document.querySelector('.typed');
+    if (typedSpan && window.Typed) {
+      const items = typedSpan.getAttribute('data-typed-items');
+      if (items) {
+        new Typed('.typed', {
+          strings: items.split(',').map(s => s.trim()),
+          typeSpeed: 60,
+          backSpeed: 40,
+          backDelay: 1500,
+          loop: true
+        });
+      }
+    }
   }
 
   /**
