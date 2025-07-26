@@ -562,3 +562,86 @@ section,
   color: #6366f1;
 }
 
+
+/*--------------------------------------------------------------# EDUCATION
+--------------------------------------------------------------*/
+
+/* Highlight the featured education timeline item */
+.timeline-item {
+  border-left: 4px solid var(--accent-color);
+  background: #000;
+  background-color: #f8f9fa;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(60, 72, 88, 0.08), 0 1.5px 6px rgba(60, 72, 88, 0.04);
+  margin-bottom: 2.5rem;
+  padding: 1rem 1rem 1rem 1rem;
+  transition: box-shadow 0.2s;
+}
+
+.timeline-item:hover {
+  box-shadow: 0 2px 4px #858a8b, 0 2px 4px #858a8b;
+}
+
+
+.education-details.flex-grow-1 {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(60, 72, 88, 0.07);
+  border: 1px solid #f0f0f0;
+  padding: 24px 24px 18px 24px;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.education-details.flex-grow-1:hover{
+  box-shadow: 0 8px 24px rgba(60, 72, 88, 0.13);
+}
+
+.timeline-content.d-flex {
+  align-items: center !important;
+}
+
+.education-logo {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  margin-right: 5rem !important;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.education-logo:hover{
+  box-shadow: 0 8px 24px rgba(60, 72, 88, 0.13);
+}
+
+/* Education Degree Title */
+.education-degree {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.education-institution {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  color: #6366f1;
+  margin-bottom: 0.5rem;
+}
+
+
+.education-location,
+.education-period {
+  color: #000000;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-right: 1.5em;
+  letter-spacing: 1px;
+  display: inline-block;
+}
+
+

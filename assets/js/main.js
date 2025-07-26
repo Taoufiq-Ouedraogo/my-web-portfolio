@@ -253,4 +253,32 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  function showSection(sectionId) {
+    document.querySelectorAll('.section-container').forEach(el => {
+      el.classList.remove('active');
+    });
+    const section = document.getElementById(sectionId + '-container');
+    if (section) section.classList.add('active');
+  }
+
+  // Listen for sidebar nav clicks
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('#navmenu a');
+    if (link) {
+      const hash = link.getAttribute('href');
+      if (hash && hash.startsWith('#')) {
+        const sectionId = hash.substring(1);
+        showSection(sectionId);
+        e.preventDefault();
+        // Optionally update the URL hash:
+        history.replaceState(null, '', hash);
+      }
+    }
+  });
+
+  // Show About section by default on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    showSection('about');
+  });
+
 })();
