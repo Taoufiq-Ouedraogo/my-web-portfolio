@@ -1,0 +1,203 @@
+:root {
+  --school-color: #6366f1;
+}
+
+/* Section title styling for h2 */
+#education h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--heading-color, #050d18);
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+#education h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--school-color, #149ddd);
+  left: 0;
+  bottom: 0;
+  border-radius: 2px;
+}
+
+
+/* Education section main styling */
+.education-section {
+  background-color: #f3f3f3;
+  padding: 60px 0;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(60, 72, 88, 0.06);
+  margin-bottom: 2.5rem;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  margin-left: 50px; /* 5px margin + 30px for dot */
+  padding-left: 0;
+}
+
+/* The vertical line itself */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -30px; /* 5px margin + 25px for dot center */
+  width: 3px;
+  height: 100%;
+  background: var(--accent-color, #149ddd);
+  border-radius: 2px;
+  z-index: 0;
+  background: #000000;  
+}
+
+/* Timeline item */
+.timeline-item {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1.5rem;
+  flex: auto;
+  flex-wrap: nowrap;
+  height: 100%;
+  border-left: 4px solid var(--accent-color);
+  background-color: #f8f9fa;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(60, 72, 88, 0.08), 0 1.5px 6px rgba(60, 72, 88, 0.04);
+  margin-bottom: 2.5rem;
+  padding: 1rem;
+  transition: box-shadow 0.2s ease;
+  position: relative;
+}
+.timeline-item:hover {
+  box-shadow: 0 6px 20px rgba(133, 138, 139, 0.3);
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -38px; /* aligns with the timeline line */
+  top: 40px;   /* adjust to align with your card/logo */
+  width: 18px;
+  height: 18px;
+  background: var(--school-color);
+  border: 4px solid var(--school-color);
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 0 4px #f8f9fa; /* halo effect, match background */
+}
+
+/* Education logo container */
+.education-logo {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  display: flex;
+  align-items: center;     /* vertical centering */
+  justify-content: center; /* horizontal centering */
+  border-radius: 8px;
+  overflow: hidden;
+  background: transparent;
+  /*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);*/
+  height: 100%;            /* Take full height of timeline-item */
+}
+.education-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.education-logo:hover {
+  box-shadow: 0 8px 24px rgba(60, 72, 88, 0.13);
+}
+
+/* Card content */
+.education-details {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(60, 72, 88, 0.07);
+  border: 1px solid #f0f0f0;
+  padding: 24px 24px 18px 24px;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  flex-grow: 1; /* Allow it to grow and fill available space */
+  flex-basis: 0; /* Allow it to shrink if needed */
+  width: 100%;
+}
+
+
+/* Card content hover effect */
+.education-details:hover {
+  box-shadow: 0 8px 24px rgba(60, 72, 88, 0.13);
+}
+
+/* Degree title */
+.education-degree {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+/* Institution name */
+.education-institution {
+  font-size: 1.2rem;  
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: var(--school-color);
+  padding-bottom: 0.05rem;
+  display: inline-block;
+}
+
+/* Location & date */
+.education-location,
+.education-period {
+  color: #000000;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-right: 1.5em;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  padding-bottom: 1rem;
+}
+
+/* Course list: remove indentation, clean look */
+.education-courses ul {
+  margin-left: 0;
+  padding-left: 0;
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-bottom: 0;
+}
+
+/* Style for Relevant Courses heading in education section */
+.education-courses h5 {
+  font-size: 1.05rem;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.2rem;
+  font-weight: 700;
+}
+
+/* Responsive: adjust dot position on small screens */
+@media (max-width: 768px) {
+  .timeline {
+    margin-left: 18px;
+  }
+  .timeline::before {
+    left: -14px;
+  }
+  .timeline-item::before {
+    left: -22px;
+    top: 32px;
+  }
+}
