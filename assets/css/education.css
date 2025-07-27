@@ -19,7 +19,7 @@
   position: absolute;
   display: block;
   width: 50px;
-  height: 3px;
+  height: 5px;
   background: var(--school-color, #149ddd);
   left: 0;
   bottom: 0;
