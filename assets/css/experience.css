@@ -1,6 +1,15 @@
 :root {
   --company-color: #6366f1;
-  --background-color: #f3f3f3;
+  --color1: #f3f3f3;
+  --heading-color: #050d18;
+}
+
+/* experience section main styling */
+.experience-section {
+  background-color: var(--color1);
+  padding-top: 50px; /* Space for the fixed menu */
+  padding-bottom: 2%;
+  margin-bottom: 40px;
 }
 
 /* Section title styling for h2 */
@@ -26,15 +35,6 @@
   border-radius: 2px;
 }
 
-
-/* experience section main styling */
-.experience-section {
-  background-color: var(--background-color, #f3f3f3);
-  padding: 60px 0;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(60, 72, 88, 0.06);
-  margin-bottom: 2.5rem;
-}
 
 /* Timeline */
 .experience-timeline {
@@ -178,6 +178,13 @@
   list-style-type: disc;
   list-style-position: inside;
   margin-bottom: 0;
+  color: #000;
+}
+
+.experience-missions ul li {
+  color: #000; /* Ensure list items are black */
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* Style for Missions heading in experience section */
@@ -198,7 +205,6 @@
   font-size: 1rem;
   font-weight: 400;
   background-color: var(--company-color);   /* Custom background */
-  color: #ffffff;                /* Text color */
   border-radius: 5px;
   padding: 0.4em 0.9em;
   margin-right: 0.4em;
@@ -212,4 +218,56 @@
 
 .experience-tags {
   padding-top: 25px;
+}
+
+
+
+/* Responsive adjustments for medium screens (tablets) */
+@media (max-width: 768px) {
+  .experience-timeline-item {
+    flex-direction: column; /* Stack content vertically */
+    width: 100%; /* Full width for smaller screens */
+    gap: 1rem; /* Reduce gap between elements */
+  }
+
+  .experience-logo {
+    flex: 0 0 auto; /* Allow the logo to resize naturally */
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
+    margin-bottom: 1rem; /* Add spacing below the logo */
+  }
+
+  .experience-details {
+    width: 100%; /* Full width for details */
+  }
+}
+
+
+/* Responsive adjustments for small screens (mobile) */
+@media (max-width: 480px) {
+  .experience-timeline-item {
+    padding: 0.5rem; /* Reduce padding for smaller screens */
+    gap: 0.5rem; /* Reduce gap further */
+  }
+
+  .experience-title {
+    font-size: 1.2rem; /* Adjust font size for smaller screens */
+  }
+
+  .experience-institution {
+    font-size: 1rem; /* Adjust font size for smaller screens */
+  }
+
+  .experience-location,
+  .experience-period {
+    font-size: 0.9rem; /* Adjust font size for smaller screens */
+  }
+
+  .experience-missions ul li {
+    font-size: 0.9rem; /* Adjust font size for list items */
+  }
+
+  .experience-tags .badge {
+    font-size: 0.8rem; /* Adjust tag size */
+    padding: 0.3em 0.7em; /* Reduce padding */
+  }
 }

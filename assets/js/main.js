@@ -1,92 +1,82 @@
-/**
-* Template Name: iPortfolio
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-* Updated: Jun 29 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-(function() {
+(function () {
   "use strict";
 
-  console.log('main.js is running');
+  console.log("main.js is running");
 
   /**
    * Dynamically load HTML component into a container
    * @param {string} url - Path to the HTML file
    * @param {string} containerId - ID of the container element
+   * @param {function} [callback] - Optional callback function to execute after loading
    */
   function loadComponent(url, containerId, callback) {
     fetch(url)
-      .then(response => response.text())
-      .then(html => {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to load ${url}: ${response.statusText}`);
+        }
+        return response.text();
+      })
+      .then((html) => {
         const container = document.getElementById(containerId);
-        container.innerHTML = html;
-        if (typeof callback === "function") callback();
-        console.log('Component loaded from ${url} into ${containerId}');
-        console.log('Loaded HTML:', html);
+        if (container) {
+          container.innerHTML = html;
+          if (typeof callback === "function") callback(); // Execute callback after loading
+          console.log(`Component loaded from ${url} into ${containerId}`);
+        } else {
+          console.error(`Container with ID "${containerId}" not found.`);
+        }
+      })
+      .catch((error) => {
+        console.error(`Error loading component from ${url}:`, error);
       });
   }
 
-  // Load sidebar and footer, then initialize sidebar toggle after sidebar is loaded
-  document.addEventListener('DOMContentLoaded', function() {
-    loadComponent('components/sidebar.html', 'sidebar-container', function () {
-      const sidebarLinks = document.querySelectorAll("#sidebar-container a");
-      sidebarLinks.forEach(link => {
-        link.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute("href").substring(1);
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: "smooth" });
-          }
-        });
+  // Load components on DOMContentLoaded
+  document.addEventListener("DOMContentLoaded", function () {
+    loadComponent("components/menu.html", "menu-container", attachMenuListeners);
+    loadComponent("components/footer.html", "footer-container");
+    loadComponent("components/about.html", "about-container", initTyped);
+    loadComponent("components/experience.html", "experience-container");
+    loadComponent("components/education.html", "education-container");
+    loadComponent("components/research.html", "research-container");
+    loadComponent("components/projects.html", "projects-container");
+  });
+
+  /**
+   * Attach event listeners to menu links after the menu is loaded
+   */
+  function attachMenuListeners() {
+    const menuLinks = document.querySelectorAll(".menu-link");
+
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default anchor behavior
+
+        // Remove the 'active' class from all links
+        menuLinks.forEach((item) => item.classList.remove("active"));
+
+        // Add the 'active' class to the clicked link
+        this.classList.add("active");
+
+        // Scroll to the corresponding section
+        const targetId = this.getAttribute("href").substring(1); // Remove the '#' from href
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
       });
     });
-    loadComponent('components/footer.html', 'footer-container');
-    loadComponent('components/about.html', 'about-container', initTyped);
-    loadComponent('components/experience.html', 'experience-container');
-    loadComponent('components/education.html', 'education-container');
-    loadComponent('components/research-projects.html', 'research-projects-container');
-  });
-
-  /**
-   * Header toggle (sidebar show/hide)
-   */
-  function initSidebarToggle() {
-    const headerToggleBtn = document.querySelector('.sidebar-toggle');
-    if (headerToggleBtn) {
-      headerToggleBtn.addEventListener('click', function() {
-        document.querySelector('#sidebar').classList.toggle('sidebar-show');
-        headerToggleBtn.classList.toggle('bi-list');
-        headerToggleBtn.classList.toggle('bi-x');
-      });
-    }
   }
-
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.addEventListener('click', function(e) {
-    if (e.target.closest('#navmenu a')) {
-      if (document.querySelector('#sidebar.sidebar-show')) {
-        const headerToggleBtn = document.querySelector('.sidebar-toggle');
-        if (headerToggleBtn) {
-          document.querySelector('#sidebar').classList.remove('sidebar-show');
-          headerToggleBtn.classList.add('bi-list');
-          headerToggleBtn.classList.remove('bi-x');
-        }
-      }
-    }
-  });
-
 
   /**
    * Preloader
    */
-  const preloader = document.querySelector('#preloader');
+  const preloader = document.querySelector("#preloader");
   if (preloader) {
-    window.addEventListener('load', () => {
+    window.addEventListener("load", () => {
       preloader.remove();
     });
   }
@@ -94,131 +84,116 @@
   /**
    * Scroll top button
    */
-  let scrollTop = document.querySelector('.scroll-top');
+  const scrollTop = document.querySelector(".scroll-top");
 
   function toggleScrollTop() {
     if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+      window.scrollY > 100 ? scrollTop.classList.add("active") : scrollTop.classList.remove("active");
     }
   }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
 
-  window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
+  if (scrollTop) {
+    scrollTop.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  window.addEventListener("load", toggleScrollTop);
+  document.addEventListener("scroll", toggleScrollTop);
 
   /**
    * Animation on scroll function and init
    */
   function aosInit() {
-    AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
+    if (window.AOS) {
+      AOS.init({
+        duration: 600,
+        easing: "ease-in-out",
+        once: true,
+        mirror: false,
+      });
+    } else {
+      console.warn("AOS library is not loaded.");
+    }
   }
-  window.addEventListener('load', aosInit);
+  window.addEventListener("load", aosInit);
 
   /**
    * Init typed.js
    */
   function initTyped() {
-    const typedSpan = document.querySelector('.typed');
+    const typedSpan = document.querySelector(".typed");
     if (typedSpan && window.Typed) {
-      const items = typedSpan.getAttribute('data-typed-items');
+      const items = typedSpan.getAttribute("data-typed-items");
       if (items) {
-        new Typed('.typed', {
-          strings: items.split(',').map(s => s.trim()),
+        new Typed(".typed", {
+          strings: items.split(",").map((s) => s.trim()),
           typeSpeed: 60,
           backSpeed: 40,
           backDelay: 1500,
-          loop: true
+          loop: true,
         });
       }
+    } else if (!window.Typed) {
+      console.warn("Typed.js library is not loaded.");
     }
   }
 
   /**
-   * Initiate Pure Counter
-   */
-  new PureCounter();
-
-  /**
-   * Animate the skills items on reveal
-   */
-  let skillsAnimation = document.querySelectorAll('.skills-animation');
-  skillsAnimation.forEach((item) => {
-    new Waypoint({
-      element: item,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = item.querySelectorAll('.progress .progress-bar');
-        progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
-        });
-      }
-    });
-  });
-
-  /**
-   * Initiate glightbox
-   */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
-
-  /**
    * Init isotope layout and filters
    */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
+  document.querySelectorAll(".isotope-layout").forEach(function (isotopeItem) {
+    const layout = isotopeItem.getAttribute("data-layout") ?? "masonry";
+    const filter = isotopeItem.getAttribute("data-default-filter") ?? "*";
+    const sort = isotopeItem.getAttribute("data-sort") ?? "original-order";
 
     let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
+    imagesLoaded(isotopeItem.querySelector(".isotope-container"), function () {
+      initIsotope = new Isotope(isotopeItem.querySelector(".isotope-container"), {
+        itemSelector: ".isotope-item",
         layoutMode: layout,
         filter: filter,
-        sortBy: sort
+        sortBy: sort,
       });
     });
 
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
-        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-        this.classList.add('filter-active');
-        initIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        if (typeof aosInit === 'function') {
-          aosInit();
-        }
-      }, false);
+    isotopeItem.querySelectorAll(".isotope-filters li").forEach(function (filters) {
+      filters.addEventListener(
+        "click",
+        function () {
+          isotopeItem.querySelector(".isotope-filters .filter-active").classList.remove("filter-active");
+          this.classList.add("filter-active");
+          initIsotope.arrange({
+            filter: this.getAttribute("data-filter"),
+          });
+          if (typeof aosInit === "function") {
+            aosInit();
+          }
+        },
+        false
+      );
     });
-
   });
 
   /**
    * Init swiper sliders
    */
   function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
-      let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
-      );
-
-      if (swiperElement.classList.contains("swiper-tab")) {
-        initSwiperWithCustomPagination(swiperElement, config);
+    document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
+      const configElement = swiperElement.querySelector(".swiper-config");
+      if (configElement) {
+        const config = JSON.parse(configElement.innerHTML.trim());
+        if (swiperElement.classList.contains("swiper-tab")) {
+          initSwiperWithCustomPagination(swiperElement, config);
+        } else {
+          new Swiper(swiperElement, config);
+        }
       } else {
-        new Swiper(swiperElement, config);
+        console.warn("Swiper configuration not found for an element.");
       }
     });
   }
@@ -228,69 +203,18 @@
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', function(e) {
+  window.addEventListener("load", function () {
     if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
+      const section = document.querySelector(window.location.hash);
+      if (section) {
         setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
+          const scrollMarginTop = getComputedStyle(section).scrollMarginTop;
           window.scrollTo({
             top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
+            behavior: "smooth",
           });
         }, 100);
       }
     }
   });
-
-  /**
-   * Navmenu Scrollspy
-   */
-  let navmenulinks = document.querySelectorAll('.navmenu a');
-
-  function navmenuScrollspy() {
-    navmenulinks.forEach(navmenulink => {
-      if (!navmenulink.hash) return;
-      let section = document.querySelector(navmenulink.hash);
-      if (!section) return;
-      let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
-      } else {
-        navmenulink.classList.remove('active');
-      }
-    })
-  }
-  window.addEventListener('load', navmenuScrollspy);
-  document.addEventListener('scroll', navmenuScrollspy);
-
-  function showSection(sectionId) {
-    document.querySelectorAll('.section-container').forEach(el => {
-      el.classList.remove('active');
-    });
-    const section = document.getElementById(sectionId + '-container');
-    if (section) section.classList.add('active');
-  }
-
-  // Listen for sidebar nav clicks
-  document.addEventListener('click', function(e) {
-    const link = e.target.closest('#navmenu a');
-    if (link) {
-      const hash = link.getAttribute('href');
-      if (hash && hash.startsWith('#')) {
-        const sectionId = hash.substring(1);
-        showSection(sectionId);
-        e.preventDefault();
-        // Optionally update the URL hash:
-        history.replaceState(null, '', hash);
-      }
-    }
-  });
-
-  // Show About section by default on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    showSection('about');
-  });
-
 })();

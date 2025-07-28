@@ -2,6 +2,15 @@
   --school-color: #6366f1;
   --background-color: #f3f3f3;
   --accent-color: #149ddd;
+  --heading-color: #180505;
+}
+
+/* Education section main styling */
+.education-section {
+  background-color: var(--background-color);
+  padding-top: 50px;
+  padding-bottom: 2%;
+  margin-bottom: 40px;
 }
 
 /* Section title styling for h2 */
@@ -27,14 +36,6 @@
   border-radius: 2px;
 }
 
-/* Education section main styling */
-.education-section {
-  background-color: var(--background-color);
-  padding: 60px 0;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(60, 72, 88, 0.06);
-  margin-bottom: 2.5rem;
-}
 
 /* Timeline */
 .education-timeline {
