@@ -1,0 +1,21 @@
+.footer {
+  background-color: #000 !important;
+  color: aliceblue !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 0.85rem;
+  position: relative;
+  height: auto;
+}
+
+.footer .container {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.footer .copyright,
+.footer .credits {
+  margin-bottom: 2px;
+  font-size: 0.8em;
+  text-align: center;
+}

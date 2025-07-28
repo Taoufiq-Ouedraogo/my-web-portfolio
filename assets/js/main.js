@@ -30,7 +30,19 @@
 
   // Load sidebar and footer, then initialize sidebar toggle after sidebar is loaded
   document.addEventListener('DOMContentLoaded', function() {
-    loadComponent('components/sidebar.html', 'sidebar-container', initSidebarToggle);
+    loadComponent('components/sidebar.html', 'sidebar-container', function () {
+      const sidebarLinks = document.querySelectorAll("#sidebar-container a");
+      sidebarLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+    });
     loadComponent('components/footer.html', 'footer-container');
     loadComponent('components/about.html', 'about-container', initTyped);
     loadComponent('components/experience.html', 'experience-container');

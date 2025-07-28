@@ -143,3 +143,10 @@
     0 0 1px #6366f1,
     0 0 1px #6366f1;
 }
+
+.section-container {
+  display: none;
+}
+.section-container.active {
+  display: block;
+}
