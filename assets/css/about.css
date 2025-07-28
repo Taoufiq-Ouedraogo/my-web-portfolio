@@ -86,8 +86,8 @@
   margin: 20px 0;
   padding: 20px;
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
-  border-left: 4px solid var(--color2); /* Accent border */
+  background-color: rgb(62, 59, 59); /* Slightly transparent background */
+  border-left: 8px solid var(--color2); /* Accent border */
   font-style: italic;
 }
 
