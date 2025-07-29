@@ -37,7 +37,7 @@
 </head>
 
 <body class="index-page">
-
+<div id="vantajs-bg"></div>
   <!-- Menu -->
   <div id="menu-container" class="section-container"></div>
 
@@ -50,6 +50,7 @@
     <div id="research-container" class="section-container"></div>
   </main>
 
+  
 
   <!-- Footer (always visible) -->
   <div id="footer-container"></div>
@@ -114,11 +115,25 @@
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vanta/vanta.globe.min.js"></script>
-  <script src="assets/vanta/three.r134.min.js"></script>
+  
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.globe.min.js"></script>
+  <script>
+    VANTA.GLOBE({
+      el: "#vantajs-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: true,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x87b3ff,
+      backgroundColor: 0x000000,
+      size: 1.40
+    })
+  </script>
 
   <!-- Main JS -->
   <script src="assets/js/main.js"></script>

@@ -2,6 +2,14 @@
   --color1: #6366f1;
 }
 
+body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
 /* Scroll Top Button violet:6366f1    grey:6c6c6c */
 .scroll-top {
   width: 60px;
