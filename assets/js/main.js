@@ -41,6 +41,38 @@
     loadComponent("components/education.html", "education-container");
     loadComponent("components/research.html", "research-container");
     loadComponent("components/projects.html", "projects-container");
+
+    let vantaInstance;
+
+    // Initialize Vanta Globe animation for the About section
+    if (window.VANTA && VANTA.GLOBE) {
+      vantaInstance = VANTA.GLOBE({
+        el: "#about-background", // Target the container
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        backgroundColor: 0x000000, // Default background color
+        color: 0x87b3ff,          // Default primary color
+        color2: 0xff5733,         // Default secondary color
+        size: 1.4,                // Default size of the globe
+      });
+    } else {
+      console.error("Vanta Globe library is not loaded.");
+    }
+
+    // Function to dynamically update Vanta Globe properties
+    window.updateVantaProperties = function (properties) {
+      if (vantaInstance) {
+        Object.assign(vantaInstance.options, properties); // Update properties
+        vantaInstance.restart(); // Restart the animation with updated properties
+      } else {
+        console.error("Vanta Globe instance is not initialized.");
+      }
+    };
   });
 
   /**

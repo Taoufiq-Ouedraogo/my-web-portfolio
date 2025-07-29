@@ -1,6 +1,5 @@
 /* About Section */
 .about-section {
-  background-color: #6c6c6c; /* Dark background for contrast */
   color: #fff; /* White text for readability */
   /*padding: 60px 20px; /* Add spacing around the section */
   position: relative;
@@ -16,9 +15,29 @@
   align-items: center;
   gap: 90px; /* Space between columns */
   max-width: 1200px;
-  margin: 0 auto; /* Center the container */
+  margin: 0 auto; 
   position: relative;
+  z-index: 1; /* Place the content above the animation */
 }
+
+/* Background Animation */
+#about-background {
+  background-color: #000000; /* Default background color */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Ensure the animation is behind the content */
+}
+
+#about-background canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Ensure the canvas stays behind everything */
+}
+
 
 .about-img {
   position: relative;
@@ -97,32 +116,4 @@
   color: #ffffff; /* Slightly lighter text for the quote */
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .about-container {
-    flex-direction: column;
-    gap: 20px;
-  }
 
-  .about-id-img {
-    width: 120px;
-    height: 120px;
-  }
-
-  .about-name {
-    font-size: 1.5rem;
-  }
-
-  .typed-container {
-    font-size: 1rem;
-  }
-
-  .about-content {
-    text-align: center;
-  }
-
-  .about-content .list {
-    padding-left: 0;
-    list-style: none;
-  }
-}

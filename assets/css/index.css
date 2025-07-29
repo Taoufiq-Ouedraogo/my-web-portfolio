@@ -51,8 +51,10 @@
   padding: 5px 0;
   position: absolute;
   z-index: 100;
-  left: -130px;         /* Position to the left of the button */
-  top: 50%;             /* Center vertically */
+  left: -130px;
+  /* Position to the left of the button */
+  top: 50%;
+  /* Center vertically */
   transform: translateY(-50%);
   transition: opacity 0.15s;
   pointer-events: none;
@@ -78,7 +80,8 @@
   border-radius: 50%;
   position: fixed;
   right: 15px;
-  bottom: 90px; /* adjust so it doesn't overlap scroll-top */
+  bottom: 90px;
+  /* adjust so it doesn't overlap scroll-top */
   z-index: 99999;
   transition: all 0.15s;
   visibility: visible;
@@ -110,15 +113,17 @@
   padding: 5px 0;
   position: absolute;
   z-index: 100;
-  left: -130px;         /* Position to the left of the button */
-  top: 50%;             /* Center vertically */
+  left: -130px;
+  /* Position to the left of the button */
+  top: 50%;
+  /* Center vertically */
   transform: translateY(-50%);
   transition: opacity 0.15s;
   pointer-events: none;
   font-size: 0.95rem;
   white-space: nowrap;
 }
- 
+
 /* Show tooltip on hover with a short delay */
 .download-cv:hover .tooltiptext {
   visibility: visible;
@@ -129,16 +134,24 @@
 
 /* -------------- SOCIAL LINKS ------------ */
 .social-links {
+  width: 60px;
+  height: auto;
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center items horizontally */
-  position: fixed; /* Keep the links fixed on the page */
-  left: 15px; /* Position them on the left */
-  top: 50%; /* Start at 50% of the viewport height */
-  transform: translateY(-50%); /* Adjust to center vertically */
-  gap: 15px; /* Add spacing between the links */
+  flex-direction: column;
+  /* Stack items vertically */
+  align-items: center;
+  /* Center items horizontally */
+  position: fixed;
+  /* Keep the links fixed on the page */
+  right: 15px;
+  /* Position them on the left */
+  top: 35%;
+  /* Start at 50% of the viewport height */
+  gap: 15px;
+  /* Add spacing between the links */
   z-index: 99999;
 }
+
 
 .social-links a {
   width: 60px;
@@ -146,7 +159,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000;
+  background-color: #000000;
   border-radius: 50%;
   font-size: 1.5rem;
   color: #fff;
@@ -163,34 +176,37 @@
 
 .social-links a i {
   font-size: 32px;
+  color: #fff;
+  line-height: 0.1;
 }
 
 
-
 .tooltip-container {
-  position: relative; /* Makes positioning of tooltip relative to the icon */
+  position: relative;
+  /* Makes positioning of tooltip relative to the icon */
   display: inline-block;
 }
 
 .tooltiptext {
   visibility: hidden;
   opacity: 0;
+  width: 120px;
   position: absolute;
-  left: 60px; /* Place it to the right of the icon */
+  left: -1px;
   top: 50%;
   transform: translateY(-50%);
   background-color: #000;
   color: #fff;
-  padding: 5px 10px;
+  padding: 5px 0;
   border-radius: 6px;
   white-space: nowrap;
   z-index: 100;
   transition: opacity 0.15s;
   font-size: 0.95rem;
   pointer-events: none;
-  width: auto; /* Allow the tooltip to adjust its width dynamically */
   text-align: center;
-  white-space: nowrap; /* Prevent the tooltip from wrapping to the next line */
+  white-space: nowrap;
+  /* Prevent the tooltip from wrapping to the next line */
 }
 
 .tooltip-container:hover .tooltiptext {
@@ -198,4 +214,3 @@
   opacity: 1;
   transition-delay: 0.1s;
 }
-
