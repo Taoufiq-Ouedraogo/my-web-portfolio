@@ -9,10 +9,7 @@ html, body {
       width: 100%;
 }
 
-.main, .section-container, .about-section {
-  position: relative;
-  z-index: 1;
-}
+
 
 /* Scroll Top Button violet:6366f1    grey:6c6c6c */
 .scroll-top {
