@@ -6,7 +6,20 @@
   padding-top: 7%;
   padding-bottom: 2%;
   margin-bottom: 40px;
+  background-color: transparent;
+
 }
+
+/* Background Animation */
+#vantajs-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
 
 .about-container {
   display: flex;
@@ -21,15 +34,22 @@
 }
 
 /* Background Animation */
-#vantajs-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
+#about-background {
+  background-color: #000000; /* Default background color */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Ensure the animation is behind the content */
 }
 
+#about-background canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Ensure the canvas stays behind everything */
+}
 
 
 .about-img {
@@ -108,5 +128,4 @@
   font-size: 1.2rem;
   color: #ffffff; /* Slightly lighter text for the quote */
 }
-
 
