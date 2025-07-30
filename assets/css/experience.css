@@ -71,14 +71,14 @@
   background-color: #f8f9fa;
   border: 1.5px solid #e0e0e0;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(60, 72, 88, 0.08), 0 1.5px 6px rgba(60, 72, 88, 0.04);
+  box-shadow: 0 4px 24px rgba(88, 60, 60, 0.08), 0 1.5px 6px rgba(60, 72, 88, 0.04);
   margin-bottom: 2.5rem;
   padding: 1rem;
   transition: box-shadow 0.2s ease;
   position: relative;
 }
 .experience-timeline-item:hover {
-  box-shadow: 0 6px 20px rgba(133, 138, 139, 0.3);
+  box-shadow: 0 6px 20px rgba(139, 133, 133, 0.3);
 }
 .experience-timeline-item::before {
   content: "";
