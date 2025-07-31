@@ -7,7 +7,7 @@
 /* experience section main styling */
 .experience-section {
   background-color: var(--color1);
-  padding-top: 50px; /* Space for the fixed menu */
+  padding-top: 5%; /* Space for the fixed menu */
   padding-bottom: 2%;
   margin-bottom: 40px;
 }
@@ -39,7 +39,7 @@
 /* Timeline */
 .experience-timeline {
   position: relative;
-  margin-left: 6%; 
+  margin-left: 2%; 
   margin-right: 0;
   padding-left: 0;
 }

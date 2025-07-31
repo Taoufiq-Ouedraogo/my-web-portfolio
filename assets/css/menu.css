@@ -6,7 +6,7 @@
 
 /* General menu styling 4c4c4c */
 .menu {
-  background-color: #000;
+  background-color: #000000;
   padding: 10px 20px;
   display: flex;
   justify-content: center;
@@ -16,7 +16,7 @@
   left: 0;
   width: 100%; /* Full width */
   z-index: 1000; /* Ensure it stays above other elements */
-  height: 10%;
+  height: 9%;
 }
 
 .menu-list {

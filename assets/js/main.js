@@ -24,17 +24,16 @@
           if (typeof callback === "function") callback(); // Execute callback after loading
           console.log(`Component loaded from ${url} into ${containerId}`);
         } else {
-          console.error(`Container with ID "${containerId}" not found.`);
+          //console.error(`Container with ID "${containerId}" not found.`);
         }
       })
-      .catch((error) => {
-        console.error(`Error loading component from ${url}:`, error);
-      });
+      //.catch((error) => {
+        //console.error(`Error loading component from ${url}:`, error);
+      //});
   }
 
   // Load components on DOMContentLoaded
   document.addEventListener("DOMContentLoaded", function () {
-    console.error("---------------------------------------------------------");
     loadComponent("components/menu.html", "menu-container", attachMenuListeners);
     loadComponent("components/footer.html", "footer-container");
     loadComponent("components/about.html", "about-container", initTyped);
