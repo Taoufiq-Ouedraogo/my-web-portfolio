@@ -3,6 +3,7 @@
 
   console.log("main.js is running");
 
+  
   /**
    * Dynamically load HTML component into a container
    * @param {string} url - Path to the HTML file
@@ -106,6 +107,21 @@
 
   window.addEventListener("load", toggleScrollTop);
   document.addEventListener("scroll", toggleScrollTop);
+
+  /**
+   * Open CV in new tab instead of direct download
+   */
+  const downloadCV = document.querySelector("#download-cv");
+
+  if (downloadCV) {
+    downloadCV.addEventListener("click", function(event) {
+      event.preventDefault();
+      
+      const pdfUrl = downloadCV.getAttribute("data-pdf-url");
+      window.open(pdfUrl, "_blank", "noopener");
+    });
+  }
+
 
   /**
    * Animation on scroll function and init
