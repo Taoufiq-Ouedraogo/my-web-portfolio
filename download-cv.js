@@ -1,4 +1,4 @@
-// node download-cv.js
+// to run ======= node download-cv.js
 const fs = require('fs');
 const https = require('https');
 
